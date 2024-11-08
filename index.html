@@ -3,17 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CV de Malek Berrezouga - Analyste Programmeur Senior Full Stack & Expert Micro-services">
+    <meta name="keywords" content="Malek Berrezouga, Développeur, Full Stack, Java, Spring, Microservices">
     <title>CV - Malek Berrezouga</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        /* Styles précédents... [Garder tous les styles précédents] */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #f8fafc;
+            --light-bg: rgba(15, 23, 42, 0.5);
+            --border-color: #60a5fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .parallax-wrapper {
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            perspective: 10px;
+            transform-style: preserve-3d;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            z-index: 1;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(-10px) scale(2);
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            transform: translateZ(-5px) scale(1.5);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 1rem;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        .title {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            color: #cbd5e1;
+        }
+
+        main {
+            position: relative;
+            background: #1e293b;
+            padding: 4rem 2rem;
+            z-index: 2;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(5px);
+            transform: translateZ(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateZ(20px);
+        }
+
+        .skill-category h3 {
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(203, 213, 225, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: var(--primary-color);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .company {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .period {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .role {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: -1rem;
+        }
+
+        .certification {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .certification h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .certification p {
+            color: #94a3b8;
+        }
+
+        .education-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .degree {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .school {
+            color: var(--primary-color);
+        }
+
+        @keyframes shine {
+            to {
+                left: 100%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+            .title {
+                font-size: 1.2rem;
+            }
+            .contact {
+                font-size: 0.9rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container parallax-container">
+    <div class="parallax-wrapper">
         <header>
-            <div class="background-animation"></div>
+            <div class="background">
+                <div class="parallax-bg"></div>
+                <div class="stars"></div>
+            </div>
             <div class="header-content">
                 <h1 class="name">MALEK BERREZOUGA</h1>
                 <div class="title">Analyste-Programmeur Senior Full Stack & Expert Micro-services</div>
@@ -31,7 +325,7 @@
                 <p>Analyste-programmeur chevronné avec plus de 8 ans d'expérience dans le développement d'applications d'entreprise, spécialisé dans les architectures micro-services et le développement Java/Spring. Expert en méthodologies agiles avec une solide expérience dans la conception et l'implémentation de solutions techniques complexes.</p>
             </section>
 
-            <section class="section skills-section">
+            <section class="section">
                 <h2>EXPERTISE TECHNIQUE</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
@@ -42,12 +336,29 @@
                                 <span class="skill-percentage">90%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 0%"></div>
+                                <div class="progress-fill"></div>
                             </div>
                         </div>
-                        <!-- Répéter pour autres compétences -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Angular, JavaScript</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>HTML5/CSS3</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
                     </div>
-                    
+
                     <div class="skill-category">
                         <h3>Cloud & DevOps</h3>
                         <div class="skill-item">
@@ -56,10 +367,27 @@
                                 <span class="skill-percentage">80%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 0%"></div>
+                                <div class="progress-fill"></div>
                             </div>
                         </div>
-                        <!-- Répéter pour autres compétences -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>CI/CD Jenkins</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Git/GitHub</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="skill-category">
@@ -70,161 +398,77 @@
                                 <span class="skill-percentage">85%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 0%"></div>
+                                <div class="progress-fill"></div>
                             </div>
                         </div>
-                        <!-- Répéter pour autres compétences -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Legacy Migration</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Weblogic/MFT</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Architecture & Outils</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Micro-services/API</span>
+                                <span class="skill-percentage">100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>JIRA/SonarQube</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Bash/Python</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Autres sections du CV... -->
-        </main>
-    </div>
+            <section class="section">
+                <h2>CERTIFICATIONS</h2>
+                <div class="certification">
+                    <h3>Swagger Hub API Owner</h3>
+                    <p>Mai 2022</p>
+                </div>
+                <div class="certification">
+                    <h3>Professional Scrum Product Owner (PSPO)</h3>
+                    <p>Janvier 2021</p>
+                </div>
+                <div class="certification">
+                    <h3>Java SPRING OWASP Security</h3>
+                    <p>Décembre 2020</p>
+                </div>
+            </section>
 
-    <script>
-        // Initialisez GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Fonction pour créer l'animation de fond
-        function createFloatingCircles() {
-            const container = document.querySelector('.background-animation');
-            if (!container) return; // Vérification de l'existence du conteneur
-
-            for (let i = 0; i < 20; i++) {
-                const circle = document.createElement('div');
-                circle.className = 'circle';
-                circle.style.width = Math.random() * 50 + 20 + 'px';
-                circle.style.height = circle.style.width;
-                circle.style.left = Math.random() * 100 + '%';
-                circle.style.top = Math.random() * 100 + '%';
-                
-                gsap.to(circle, {
-                    y: -100,
-                    rotation: 360,
-                    duration: Math.random() * 3 + 2,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "none"
-                });
-                
-                container.appendChild(circle);
-            }
-        }
-
-        // Animation des barres de progression
-        function animateProgressBars() {
-            const progressBars = document.querySelectorAll('.skill-item');
-            if (!progressBars.length) return;
-
-            progressBars.forEach(skill => {
-                const progressFill = skill.querySelector('.progress-fill');
-                const percentage = skill.querySelector('.skill-percentage');
-                const value = percentage.textContent.replace('%', '');
-
-                gsap.to(progressFill, {
-                    width: value + '%',
-                    duration: 1.5,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: skill,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-        }
-
-        // Animation des éléments d'expérience
-        function animateExperienceItems() {
-            const items = document.querySelectorAll('.experience-item');
-            if (!items.length) return;
-
-            items.forEach((item, i) => {
-                gsap.from(item, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-        }
-
-        // Animation de parallax pour les catégories de compétences
-        function initParallaxEffect() {
-            const categories = document.querySelectorAll('.skill-category');
-            if (!categories.length) return;
-
-            categories.forEach(category => {
-                gsap.to(category, {
-                    scrollTrigger: {
-                        trigger: category,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1,
-                        onUpdate: self => {
-                            const progress = self.progress;
-                            category.style.transform = `translateZ(${progress * 50}px)`;
-                        }
-                    }
-                });
-            });
-        }
-
-        // Initialisation des animations au chargement
-        window.addEventListener('DOMContentLoaded', () => {
-            // Attendez un court instant pour s'assurer que le DOM est complètement chargé
-            setTimeout(() => {
-                createFloatingCircles();
-                animateProgressBars();
-                animateExperienceItems();
-                initParallaxEffect();
-                
-                // Animation initiale du header
-                const headerContent = document.querySelector('.header-content');
-                if (headerContent) {
-                    gsap.from(headerContent, {
-                        y: -50,
-                        opacity: 0,
-                        duration: 1,
-                        ease: "power2.out"
-                    });
-                }
-            }, 100);
-        });
-
-        // Effet 3D au survol
-        document.querySelectorAll('.skill-category').forEach(category => {
-            category.addEventListener('mousemove', (e) => {
-                const rect = category.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const xPercent = (x / rect.width - 0.5) * 20;
-                const yPercent = (y / rect.height - 0.5) * 20;
-                
-                gsap.to(category, {
-                    rotationY: xPercent,
-                    rotationX: -yPercent,
-                    duration: 0.5,
-                    ease: "power1.out"
-                });
-            });
-
-            category.addEventListener('mouseleave', () => {
-                gsap.to(category, {
-                    rotationY: 0,
-                    rotationX: 0,
-                    duration: 0.5,
-                    ease: "power1.out"
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+            <section class="section">
+                <h
