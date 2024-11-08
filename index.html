@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CV de Malek Berrezouga - Analyste Programmeur Senior Full Stack & Expert Micro-services">
+    <meta name="keywords" content="Malek Berrezouga, Développeur, Full Stack, Java, Spring, Microservices">
+    <title>CV - Malek Berrezouga</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --border-color: #e5e7eb;
+            --progress-bg: #ddd;
+            --progress-fill: #2563eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background: white;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .skill-percentage {
+            color: var(--primary-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--progress-bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--progress-fill);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: var(--light-bg);
+        }
+
+        .company {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .period {
+            color: #666;
+        }
+
+        .role {
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: -1rem;
+        }
+
+        .certification {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .certification h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .school {
+            margin-top: 0.5rem;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="name">MALEK BERREZOUGA</h1>
+            <div class="title">Analyste-Programmeur Senior Full Stack & Expert Micro-services</div>
+            <div class="contact">
+                <span>📍 5505 Rue Duchesneau, Montréal</span>
+                <span>📱 438-455-5846</span>
+                <span>📧 Berrezouga.malek@outlook.com</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2>PROFIL</h2>
+                <p>Analyste-programmeur chevronné avec plus de 8 ans d'expérience dans le développement d'applications d'entreprise, spécialisé dans les architectures micro-services et le développement Java/Spring. Expert en méthodologies agiles avec une solide expérience dans la conception et l'implémentation de solutions techniques complexes.</p>
+            </section>
+
+            <section class="section">
+                <h2>EXPERTISE TECHNIQUE</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Langages & Frameworks</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Java (Spring Boot, Spring Batch)</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Angular, JavaScript</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>HTML5/CSS3</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Azure/AWS</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>CI/CD Jenkins</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Git/GitHub</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Sécurité & Legacy</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>OWASP Security</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Legacy Migration</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Weblogic/MFT</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Architecture & Outils</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Micro-services/API</span>
+                                <span class="skill-percentage">100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>JIRA/SonarQube</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Bash/Python</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>CERTIFICATIONS</h2>
+                <div class="certification">
+                    <h3>Swagger Hub API Owner</h3>
+                    <p>Mai 2022</p>
+                </div>
+                <div class="certification">
+                    <h3>Professional Scrum Product Owner (PSPO)</h3>
+                    <p>Janvier 2021</p>
+                </div>
+                <div class="certification">
+                    <h3>Java SPRING OWASP Security</h3>
+                    <p>Décembre 2020</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>EXPÉRIENCE PROFESSIONNELLE</h2>
+                <div class="experience-item">
+                    <div class="company">Desjardins</div>
+                    <div class="period">Juin 2020 - Présent</div>
+                    <div class="role">Analyste Programmeur</div>
+                    <ul>
+                        <li>Architecte et développe des solutions micro-services scalables</li>
+                        <li>Dirige l'implémentation des meilleures pratiques de développement</li>
+                        <li>Optimise les processus de CI/CD, réduisant le temps de déploiement de 40%</li>
+                        <li>Implémente des pratiques DevSecOps et automatise les tests</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company">The Weather Network</div>
+                    <div class="period">Mars 2017 - Mai 2020</div>
+                    <div class="role">Analyste Système TI</div>
+                    <ul>
+                        <li>Géré la sécurité des plateformes technologiques multi-régionales</li>
+                        <li>Implémenté des solutions de monitoring proactif</li>
+                        <li>Dirigé la modernisation des systèmes legacy</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company">I2V</div>
+                    <div class="period">Octobre 2016 - Janvier 2017</div>
+                    <div class="role">Analyste Programmeur</div>
+                    <ul>
+                        <li>Développé des solutions e-commerce avec Magento</li>
+                        <li>Intégré des systèmes SAP MM pour la gestion des quotas</li>
+                        <li>Optimisé les performances des applications web</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>FORMATION</h2>
+                <div class="education-item">
+                    <div class="degree">Certificat en Informatique et Développement de Logiciel</div>
+                    <div class="school">Université du Québec à Montréal, 2015</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Licence en Sciences de l'Informatique</div>
+                    <div class="school">Institut Supérieur des Études Technologiques de la Charguia, 2012</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>LANGUES
