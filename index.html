@@ -48,7 +48,117 @@
             perspective: 2000px;
             margin: 20px;
         }
+             .parallax-wrapper {
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
 
+        .smooth-scroll {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation des compétences améliorée */
+        .skill-category {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-category.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .progress-fill {
+            width: 0 !important;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-fill.animate {
+            width: var(--target-width) !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-container {
+                margin: 10px;
+                height: auto;
+            }
+
+            .page-content {
+                padding: 20px;
+            }
+
+            .contact {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+
+            .language-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .name {
+                font-size: 1.8rem;
+            }
+
+            .contact span {
+                font-size: 0.9rem;
+            }
+
+            header {
+                padding: 1.5rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
         .page {
             position: absolute;
             width: 100%;
