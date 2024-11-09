@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CV de Malek Berrezouga - Analyste Programmeur Senior Full Stack & Expert Micro-services">
-    <meta name="keywords" content="Malek Berrezouga, Développeur, Full Stack, Java, Spring, Microservices">
     <title>CV - Malek Berrezouga</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         :root {
             --primary-color: #2563eb;
@@ -21,22 +20,95 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            color: var(--text-color);
-            line-height: 1.6;
-            background: white;
-            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .book-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            position: relative;
+            perspective: 2000px;
+            margin: 20px;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: left;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.6s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-content {
+            padding: 40px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .language-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c5364;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Styles CV */
         .container {
+            background: white;
+            border-radius: 10px;
             max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-            border-radius: 8px;
         }
 
         header {
@@ -45,29 +117,18 @@
             padding: 2rem;
             border-radius: 8px 8px 0 0;
             text-align: center;
-            transform-style: preserve-3d;
-            perspective: 800px;
-            transition: transform 0.5s;
-        }
-
-        header:hover {
-            transform: rotateX(10deg) translateZ(50px);
         }
 
         .name {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            animation: fadeInDown 1s;
         }
 
         .title {
             font-size: 1.25rem;
             opacity: 0.9;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s;
-            animation-delay: 0.5s;
-            animation-fill-mode: both;
         }
 
         .contact {
@@ -98,7 +159,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            transform-style: preserve-3d;
         }
 
         .skill-category {
@@ -109,7 +169,7 @@
         }
 
         .skill-category:hover {
-            transform: scale(1.05) translateZ(20px);
+            transform: scale(1.05);
         }
 
         .skill-category h3 {
@@ -128,10 +188,6 @@
             font-weight: 500;
         }
 
-        .skill-percentage {
-            color: var(--primary-color);
-        }
-
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -144,19 +200,19 @@
             height: 100%;
             background: var(--progress-fill);
             border-radius: 4px;
-            transition: width 0.5s ease;
+            transition: width 1s ease-out;
         }
 
-        .experience-item {
-            margin-bottom: 1.5rem;
+        .experience-item, .certification, .education-item {
+            background: var(--light-bg);
             padding: 1rem;
             border-radius: 8px;
-            background: var(--light-bg);
+            margin-bottom: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .experience-item:hover {
-            transform: scale(1.03) translateZ(10px);
+        .experience-item:hover, .certification:hover, .education-item:hover {
+            transform: scale(1.03);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -191,453 +247,324 @@
             position: absolute;
             left: -1rem;
         }
-
-        .certification {
-            background: var(--light-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .certification:hover {
-            transform: scale(1.03) translateZ(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .certification h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-item {
-            background: var(--light-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .education-item:hover {
-            transform: scale(1.03) translateZ(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .degree {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .school {
-            margin-top: 0.5rem;
-        }
-
-        @media print {
-            body {
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translate3d(0, -100%, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 100%, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-        body {
-            background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        .skill-category {
-            animation: moveBlocks 5s ease-in-out infinite;
-        }
-        
-        @keyframes moveBlocks {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(10px);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-        .background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(45deg, #2c3e50, #27ae60, #2980b9, #8e44ad);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-}
-
-.particle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: particleMove 10s ease-in-out infinite;
-}
-
-.particle:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.particle:nth-child(2) {
-    top: 40%;
-    left: 25%;
-    animation-delay: -2s;
-}
-
-.particle:nth-child(3) {
-    top: 60%;
-    left: 15%;
-    animation-delay: -4s;
-}
-
-.particle:nth-child(4) {
-    top: 80%;
-    left: 30%;
-    animation-delay: -6s;
-}
-
-.particle:nth-child(5) {
-    top: 30%;
-    left: 50%;
-    animation-delay: -8s;
-}
-
-.particle:nth-child(6) {
-    top: 70%;
-    left: 60%;
-    animation-delay: -10s;
-}
-
-.particle:nth-child(7) {
-    top: 90%;
-    left: 70%;
-    animation-delay: -12s;
-}
-
-.particle:nth-child(8) {
-    top: 50%;
-    left: 80%;
-    animation-delay: -14s;
-}
-
-.particle:nth-child(9) {
-    top: 10%;
-    left: 90%;
-    animation-delay: -16s;
-}
-
-.particle:nth-child(10) {
-    top: 30%;
-    left: 75%;
-    animation-delay: -18s;
-}
-
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes particleMove {
-    0%, 100% {
-        transform: translateX(0) translateY(0);
-    }
-    25% {
-        transform: translateX(50px) translateY(50px);
-    }
-    50% {
-        transform: translateX(100px) translateY(-50px);
-    }
-    75% {
-        transform: translateX(-50px) translateY(-100px);
-    }
-}
     </style>
 </head>
 <body>
-    <div class="background-animation">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+    <div class="language-selector">
+        <button class="language-btn" data-lang="fr">FR</button>
+        <button class="language-btn" data-lang="en">EN</button>
     </div>
-    <div class="container">
-        <header>
-            <h1 class="name">MALEK BERREZOUGA</h1>
-            <div class="title">Analyste-Programmeur Senior Full Stack & Expert Micro-services</div>
-            <div class="contact">
-                <span>📍 5505 Rue Duchesneau, Montréal</span>
-                <span>📱 438-455-5846</span>
-                <span>📧 Berrezouga.malek@outlook.com</span>
+
+    <div class="book-container">
+        <!-- Page Française -->
+        <div class="page active" id="fr-page" data-lang="fr">
+            <div class="page-content">
+                <div class="container">
+                    <header>
+                        <h1 class="name">MALEK BERREZOUGA</h1>
+                        <div class="title">Analyste-Programmeur Senior Full Stack & Expert Micro-services</div>
+                        <div class="contact">
+                            <span>📍 5505 Rue Duchesneau, Montréal</span>
+                            <span>📱 438-455-5846</span>
+                            <span>📧 Berrezouga.malek@outlook.com</span>
+                        </div>
+                    </header>
+
+                    <main>
+                        <section class="section">
+                            <h2>PROFIL</h2>
+                            <p>Analyste-programmeur chevronné avec plus de 8 ans d'expérience dans le développement d'applications d'entreprise, spécialisé dans les architectures micro-services et le développement Java/Spring.</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>EXPERTISE TECHNIQUE</h2>
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h3>Langages & Frameworks</h3>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Java (Spring Boot, Spring Batch)</span>
+                                            <span class="skill-percentage">90%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Angular, JavaScript</span>
+                                            <span class="skill-percentage">90%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>HTML5/CSS3</span>
+                                            <span class="skill-percentage">90%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="skill-category">
+                                    <h3>Cloud & DevOps</h3>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Azure/AWS</span>
+                                            <span class="skill-percentage">80%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>CI/CD Jenkins</span>
+                                            <span class="skill-percentage">85%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Git/GitHub</span>
+                                            <span class="skill-percentage">100%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="skill-category">
+                                    <h3>Sécurité & Legacy</h3>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>OWASP Security</span>
+                                            <span class="skill-percentage">85%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Legacy Migration</span>
+                                            <span class="skill-percentage">90%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Weblogic/MFT</span>
+                                            <span class="skill-percentage">80%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="skill-category">
+                                    <h3>Architecture & Outils</h3>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Micro-services/API</span>
+                                            <span class="skill-percentage">100%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>JIRA/SonarQube</span>
+                                            <span class="skill-percentage">100%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-header">
+                                            <span>Bash/Python</span>
+                                            <span class="skill-percentage">60%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                        <section class="section">
+                            <h2>CERTIFICATIONS</h2>
+                            <div class="certification">
+                                <h3>Swagger Hub API Owner</h3>
+                                <p>Mai 2022</p>
+                            </div>
+                            <div class="certification">
+                                <h3>Professional Scrum Product Owner (PSPO)</h3>
+                                <p>Janvier 2021</p>
+                            </div>
+                            <div class="certification">
+                                <h3>Java SPRING OWASP Security</h3>
+                                <p>Décembre 2020</p>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <h2>EXPÉRIENCE PROFESSIONNELLE</h2>
+                            <div class="experience-item">
+                                <div class="company">Desjardins</div>
+                                <div class="period">Juin 2020 - Présent</div>
+                                <div class="role">Analyste Programmeur</div>
+                                <ul>
+                                    <li>Architecte et développe des solutions micro-services scalables</li>
+                                    <li>Dirige l'implémentation des meilleures pratiques de développement</li>
+                                    <li>Optimise les processus de CI/CD, réduisant le temps de déploiement de 40%</li>
+                                    <li>Implémente des pratiques DevSecOps et automatise les tests</li>
+                                </ul>
+                            </div>
+            
+                            <div class="experience-item">
+                <div class="company">The Weather Network</div>
+                <div class="period">Mars 2017 - Mai 2020</div>
+                <div class="role">Analyste Système TI</div>
+                <ul>
+                    <li>Géré la sécurité des plateformes technologiques multi-régionales</li>
+                    <li>Implémenté des solutions de monitoring proactif</li>
+                    <li>Dirigé la modernisation des systèmes legacy</li>
+                </ul>
             </div>
-        </header>
-
-        <main>
-            <section class="section">
-                <h2>PROFIL</h2>
-                <p>Analyste-programmeur chevronné avec plus de 8 ans d'expérience dans le développement d'applications d'entreprise, spécialisé dans les architectures micro-services et le développement Java/Spring. Expert en méthodologies agiles avec une solide expérience dans la conception et l'implémentation de solutions techniques complexes.</p>
+            
+            <div class="experience-item">
+                <div class="company">I2V</div>
+                <div class="period">Octobre 2016 - Janvier 2017</div>
+                <div class="role">Analyste Programmeur</div>
+                <ul>
+                    <li>Développé des solutions e-commerce avec Magento</li>
+                    <li>Intégré des systèmes SAP MM pour la gestion des quotas</li>
+                    <li>Optimisé les performances des applications web</li>
+                </ul>
+            </div>
             </section>
-
+            
             <section class="section">
-                <h2>EXPERTISE TECHNIQUE</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Langages & Frameworks</h3>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Java (Spring Boot, Spring Batch)</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Angular, JavaScript</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>HTML5/CSS3</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Cloud & DevOps</h3>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Azure/AWS</span>
-                                <span class="skill-percentage">80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>CI/CD Jenkins</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Git/GitHub</span>
-                                <span class="skill-percentage">100%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Sécurité & Legacy</h3>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>OWASP Security</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Legacy Migration</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Weblogic/MFT</span>
-                                <span class="skill-percentage">80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Architecture & Outils</h3>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Micro-services/API</span>
-                                <span class="skill-percentage">100%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>JIRA/SonarQube</span>
-                                <span class="skill-percentage">100%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span>Bash/Python</span>
-                                <span class="skill-percentage">60%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
+                <h2>FORMATION</h2>
+                <div class="education-item">
+                    <div class="degree">Certificat en Informatique et Développement de Logiciel</div>
+                    <div class="school">Université du Québec à Montréal, 2015</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Licence en Sciences de l'Informatique</div>
+                    <div class="school">Institut Supérieur des Études Technologiques de la Charguia, 2012</div>
                 </div>
             </section>
-
+            
             <section class="section">
-                <h2>CERTIFICATIONS</h2>
-                <div class="certification">
-                    <h3>Swagger Hub API Owner</h3>
-                    <p>Mai 2022</p>
-                </div>
-                <div class="certification">
-                    <h3>Professional Scrum Product Owner (PSPO)</h3>
-                    <p>Janvier 2021</p>
-                </div>
-                <div class="certification">
-                    <h3>Java SPRING OWASP Security</h3>
-                    <p>Décembre 2020</p>
-                </div>
+                <h2>LANGUES</h2>
+                <ul>
+                    <li>Français - Langue maternelle</li>
+                    <li>Anglais - Professionnel</li>
+                    <li>Arabe - Langue maternelle</li>
+                </ul>
             </section>
-
-            <section class="section">
-                <h2>EXPÉRIENCE PROFESSIONNELLE</h2>
-                <div class="experience-item">
-                    <div class="company">Desjardins</div>
-                    <div class="period">Juin 2020 - Présent</div>
-                    <div class="role">Analyste Programmeur</div>
-                    <ul>
-                        <li>Architecte et développe des solutions micro-services scalables</li>
-                        <li>Dirige l'implémentation des meilleures pratiques de développement</li>
-                        <li>Optimise les processus de CI/CD, réduisant le temps de déploiement de 40%</li>
-                        <li>Implémente des pratiques DevSecOps et automatise les tests</li>
-                    </ul>
+            
+                    </main>
                 </div>
+            </div>
+        </div>
 
-                <div class="experience-item">
-    <div class="company">The Weather Network</div>
-    <div class="period">Mars 2017 - Mai 2020</div>
-    <div class="role">Analyste Système TI</div>
-    <ul>
-        <li>Géré la sécurité des plateformes technologiques multi-régionales</li>
-        <li>Implémenté des solutions de monitoring proactif</li>
-        <li>Dirigé la modernisation des systèmes legacy</li>
-    </ul>
-</div>
+        <!-- Page Anglaise -->
+        <div class="page" id="en-page" data-lang="en">
+            <div class="page-content">
+                <div class="container">
+                    <header>
+                        <h1 class="name">MALEK BERREZOUGA</h1>
+                        <div class="title">Senior Full Stack Developer & Microservices Expert</div>
+                        <div class="contact">
+                            <span>📍 5505 Duchesneau Street, Montreal</span>
+                            <span>📱 438-455-5846</span>
+                            <span>📧 Berrezouga.malek@outlook.com</span>
+                        </div>
+                    </header>
 
-<div class="experience-item">
-    <div class="company">I2V</div>
-    <div class="period">Octobre 2016 - Janvier 2017</div>
-    <div class="role">Analyste Programmeur</div>
-    <ul>
-        <li>Développé des solutions e-commerce avec Magento</li>
-        <li>Intégré des systèmes SAP MM pour la gestion des quotas</li>
-        <li>Optimisé les performances des applications web</li>
-    </ul>
-</div>
-</section>
+                    <main>
+                        <section class="section">
+                            <h2>PROFILE</h2>
+                            <p>Seasoned programmer analyst with over 8 years of experience in enterprise application development, specialized in microservices architecture and Java/Spring development.</p>
+                        </section>
 
-<section class="section">
-    <h2>FORMATION</h2>
-    <div class="education-item">
-        <div class="degree">Certificat en Informatique et Développement de Logiciel</div>
-        <div class="school">Université du Québec à Montréal, 2015</div>
+                        <section class="section">
+                            <h2>TECHNICAL EXPERTISE</h2>
+                            <div class="skills-grid">
+                                <!-- Version anglaise des compétences -->
+                            </div>
+                        </section>
+
+                        <!-- Version anglaise des autres sections -->
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="education-item">
-        <div class="degree">Licence en Sciences de l'Informatique</div>
-        <div class="school">Institut Supérieur des Études Technologiques de la Charguia, 2012</div>
-    </div>
-</section>
 
-<section class="section">
-    <h2>LANGUES</h2>
-    <ul>
-        <li>Français - Langue maternelle</li>
-        <li>Anglais - Professionnel</li>
-        <li>Arabe - Langue maternelle</li>
-    </ul>
-</section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentLang = 'fr';
+            let isAnimating = false;
 
-</main>
-</div>
+            function changeLang(newLang) {
+                if (newLang === currentLang || isAnimating) return;
+                
+                const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
+                const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
+                
+                if (!currentPage || !newPage) return;
+                
+                isAnimating = true;
+
+                gsap.set(newPage, {
+                    display: 'block',
+                    rotateY: 90,
+                    opacity: 0
+                });
+
+                gsap.timeline({
+                    onComplete: () => {
+                        currentPage.style.display = 'none';
+                        isAnimating = false;
+                        currentLang = newLang;
+                    }
+                })
+                .to(currentPage, {
+                    rotateY: -90,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                })
+                .to(newPage, {
+                    rotateY: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                }, "-=0.25");
+            }
+
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!isAnimating) {
+                        changeLang(btn.dataset.lang);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
