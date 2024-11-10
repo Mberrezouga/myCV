@@ -110,6 +110,47 @@
             opacity: 0;
         }
 
+        .section {
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        /* Améliorations des styles */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
         /* Animation des progress bars */
         .progress-bar {
             width: 100%;
@@ -155,6 +196,8 @@
             padding: 15px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(-20px);
         }
 
         .language-btn {
@@ -168,32 +211,23 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .language-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-        .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
 
-.skill-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
+        /* Autres animations */
+        .certification,
+        .experience-item,
+        .education-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
 
-.skill-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
         /* Animations */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
@@ -401,75 +435,74 @@
                         <section class="section">
                             <h2>CERTIFICATIONS</h2>
                             <div class="certification">
-                                <h3>Swagger Hub API Owner</h3>
-                                <p>Mai 2022</p>
+                            <h3>Swagger Hub API Owner</h3>
+                            <p>Mai 2022</p>
                             </div>
                             <div class="certification">
-                                <h3>Professional Scrum Product Owner (PSPO)</h3>
-                                <p>Janvier 2021</p>
+                            <h3>Professional Scrum Product Owner (PSPO)</h3>
+                            <p>Janvier 2021</p>
                             </div>
                             <div class="certification">
-                                <h3>Java SPRING OWASP Security</h3>
-                                <p>Décembre 2020</p>
+                            <h3>Java SPRING OWASP Security</h3>
+                            <p>Décembre 2020</p>
                             </div>
-                        </section>
-                        <section class="section">
+                            </section>
+                            <section class="section">
                             <h2>EXPÉRIENCE PROFESSIONNELLE</h2>
                             <div class="experience-item">
-                                <div class="company">Desjardins</div>
-                                <div class="period">Juin 2020 - Présent</div>
-                                <div class="role">Analyste Programmeur</div>
-                                <ul>
-                                    <li>Architecte et développe des solutions micro-services scalables</li>
-                                    <li>Dirige l'implémentation des meilleures pratiques de développement</li>
-                                    <li>Optimise les processus de CI/CD, réduisant le temps de déploiement de 40%</li>
-                                    <li>Implémente des pratiques DevSecOps et automatise les tests</li>
-                                </ul>
+                            <div class="company">Desjardins</div>
+                            <div class="period">Juin 2020 - Présent</div>
+                            <div class="role">Analyste Programmeur</div>
+                            <ul>
+                            <li>Architecte et développe des solutions micro-services scalables</li>
+                            <li>Dirige l'implémentation des meilleures pratiques de développement</li>
+                            <li>Optimise les processus de CI/CD, réduisant le temps de déploiement de 40%</li>
+                            <li>Implémente des pratiques DevSecOps et automatise les tests</li>
+                            </ul>
                             </div>
-            
                             <div class="experience-item">
                                 <div class="company">The Weather Network</div>
-                <div class="period">Mars 2017 - Mai 2020</div>
-                <div class="role">Analyste Système TI</div>
-                <ul>
-                    <li>Géré la sécurité des plateformes technologiques multi-régionales</li>
-                    <li>Implémenté des solutions de monitoring proactif</li>
-                    <li>Dirigé la modernisation des systèmes legacy</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <div class="company">I2V</div>
-                <div class="period">Octobre 2016 - Janvier 2017</div>
-                <div class="role">Analyste Programmeur</div>
-                <ul>
-                    <li>Développé des solutions e-commerce avec Magento</li>
-                    <li>Intégré des systèmes SAP MM pour la gestion des quotas</li>
-                    <li>Optimisé les performances des applications web</li>
-                </ul>
-            </div>
-            </section>
+                                <div class="period">Mars 2017 - Mai 2020</div>
+                                <div class="role">Analyste Système TI</div>
+                                <ul>
+                                    <li>Géré la sécurité des plateformes technologiques multi-régionales</li>
+                                    <li>Implémenté des solutions de monitoring proactif</li>
+                                    <li>Dirigé la modernisation des systèmes legacy</li>
+                                </ul>
+                            </div>
+                            <div class="experience-item">
+                                <div class="company">I2V</div>
+                                <div class="period">Octobre 2016 - Janvier 2017</div>
+                                <div class="role">Analyste Programmeur</div>
+                                <ul>
+                                    <li>Développé des solutions e-commerce avec Magento</li>
+                                    <li>Intégré des systèmes SAP MM pour la gestion des quotas</li>
+                                    <li>Optimisé les performances des applications web</li>
+                                </ul>
+                            </div>
+                        </section>
             
-            <section class="section">
-                <h2>FORMATION</h2>
-                <div class="education-item">
-                    <div class="degree">Certificat en Informatique et Développement de Logiciel</div>
-                    <div class="school">Université du Québec à Montréal, 2015</div>
-                </div>
-                <div class="education-item">
-                    <div class="degree">Licence en Sciences de l'Informatique</div>
-                    <div class="school">Institut Supérieur des Études Technologiques de la Charguia, 2012</div>
-                </div>
-            </section>
+                        <section class="section">
+                            <h2>FORMATION</h2>
+                            <div class="education-item">
+                                <div class="degree">Certificat en Informatique et Développement de Logiciel</div>
+                                <div class="school">Université du Québec à Montréal, 2015</div>
+                            </div>
+                            <div class="education-item">
+                                <div class="degree">Licence en Sciences de l'Informatique</div>
+                                <div class="school">Institut Supérieur des Études Technologiques de la Charguia, 2012</div>
+                            </div>
+                        </section>
             
-            <section class="section">
-                <h2>LANGUES</h2>
-                <ul>
-                    <li>Français - Langue maternelle</li>
-                    <li>Anglais - Professionnel</li>
-                    <li>Arabe - Langue maternelle</li>
-                </ul>
-            </section>
-            
+                        <section class="section">
+                            <h2>LANGUES</h2>
+                            <ul>
+                                <li>Français - Langue maternelle</li>
+                                <li>Anglais - Professionnel</li>
+                                <li>Arabe - Langue maternelle</li>
+                            </ul>
+                        </section>
+                        
                     </main>
                 </div>
             </div>
@@ -736,7 +769,7 @@
         
             // Section animations
             function animateSections() {
-                gsap.utils.toArray('.section').forEach(section => {
+                gsap.utils.toArray('.section').forEach((section, index) => {
                     gsap.from(section, {
                         scrollTrigger: {
                             trigger: section,
@@ -747,149 +780,207 @@
                         opacity: 0,
                         y: 50,
                         duration: 1,
-                        ease: "power3.out"
+                        ease: "power3.out",
+                        delay: index * 0.2
                     });
-                });
-            }
         
-            // Skills animations
-            function animateSkills() {
-                gsap.utils.toArray('.skill-category').forEach((category, i) => {
-                    gsap.from(category, {
+                    gsap.from(section.querySelector('h2'), {
                         scrollTrigger: {
-                            trigger: category,
-                            start: "top 80%",
-                            toggleActions: "play none none reverse"
-                        },
-                        opacity: 0,
-                        x: -50,
-                        duration: 0.8,
-                        delay: i * 0.2,
-                        ease: "power3.out"
-                    });
-        
-                    const progressBars = category.querySelectorAll('.progress-fill');
-                    progressBars.forEach(bar => {
-                        const targetWidth = bar.style.width;
-                        gsap.fromTo(bar,
-                            { width: "0%" },
-                            {
-                                scrollTrigger: {
-                                    trigger: bar,
-                                    start: "top 90%"
-                                },
-                                width: targetWidth,
-                                duration: 1.2,
-                                ease: "power2.out"
-                            }
-                        );
-                    });
-                });
-            }
-        
-            // Experience animations
-            function animateExperiences() {
-                gsap.utils.toArray('.experience-item').forEach((item, i) => {
-                    gsap.from(item, {
-                        scrollTrigger: {
-                            trigger: item,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        },
-                        opacity: 0,
-                        x: i % 2 === 0 ? -50 : 50,
-                        duration: 0.8,
-                        ease: "power3.out"
-                    });
-                });
-            }
-        
-            // Certifications animations
-            function animateCertifications() {
-                gsap.utils.toArray('.certification').forEach((cert, i) => {
-                    gsap.from(cert, {
-                        scrollTrigger: {
-                            trigger: cert,
-                            start: "top 85%",toggleActions: "play none none reverse"
+trigger: section,
+start: "top 80%",
+toggleActions: "play none none reverse"
 },
 opacity: 0,
-y: 30,
-scale: 0.95,
-duration: 0.6,
-delay: i * 0.2,
-ease: "back.out(1.7)"
+x: -20,
+duration: 0.8,
+ease: "power3.out",
+delay: index * 0.2 + 0.2
 });
 });
 }
-// Initialize animations
-function initAnimations() {
-    // Reset triggers
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+// Skills animations
+function animateSkills() {
+            gsap.utils.toArray('.skill-category').forEach((category, i) => {
+                gsap.from(category, {
+                    scrollTrigger: {
+                        trigger: category,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    x: -50,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    ease: "power3.out"
+                });
     
-    animateHeader();
-    animateSections();
-    animateSkills();
-    animateExperiences();
-    animateCertifications();
-}
-
-// Language change function
-function changeLang(newLang) {
-    if (newLang === currentLang || isAnimating) return;
-    
-    const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
-    const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
-    
-    if (!currentPage || !newPage) return;
-    
-    isAnimating = true;
-
-    // Prepare new page
-    gsap.set(newPage, {
-        display: 'block',
-        rotateY: 90,
-        opacity: 0
-    });
-
-    // Transition animation
-    gsap.timeline({
-        onComplete: () => {
-            currentPage.style.display = 'none';
-            isAnimating = false;
-            currentLang = newLang;
-            ScrollTrigger.refresh();
-            initAnimations();
+                const progressBars = category.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const targetWidth = bar.style.width;
+                    gsap.fromTo(bar,
+                        { width: "0%" },
+                        {
+                            scrollTrigger: {
+                                trigger: bar,
+                                start: "top 90%"
+                            },
+                            width: targetWidth,
+                            duration: 1.2,
+                            ease: "power2.out",
+                            delay: i * 0.2 + 0.2
+                        }
+                    );
+                });
+            });
         }
-    })
-    .to(currentPage, {
-        rotateY: -90,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.inOut"
-    })
-    .to(newPage, {
-        rotateY: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power2.inOut"
-    }, "-=0.3");
-}
-
-// Initialization
-initAnimations();
-
-// Event listeners
-document.querySelectorAll('.language-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const newLang = btn.dataset.lang;
-        changeLang(newLang);
+    
+        // Experience animations
+        function animateExperiences() {
+            gsap.utils.toArray('.experience-item').forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    delay: i * 0.2
+                });
+            });
+        }
+    
+        // Certifications animations
+        function animateCertifications() {
+            gsap.utils.toArray('.certification').forEach((cert, i) => {
+                gsap.from(cert, {
+                    scrollTrigger: {
+                        trigger: cert,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    scale: 0.95,
+                    duration: 0.6,
+                    delay: i * 0.2,
+                    ease: "back.out(1.7)"
+                });
+            });
+        }
+    
+        // Education animations
+        function animateEducation() {
+            gsap.utils.toArray('.education-item').forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    delay: i * 0.2
+                });
+            });
+        }
+    
+        // Language selector animation
+        function animateLanguageSelector() {
+            gsap.from('.language-selector', {
+                opacity: 0,
+                y: -20,
+                duration: 0.8,
+                delay: 1,
+                ease: "power3.out"
+            });
+    
+            gsap.from('.language-btn', {
+                opacity: 0,
+                y: 20,
+                duration: 0.6,
+                delay: 1.2,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+        }
+    
+        // Initialize animations
+        function initAnimations() {
+            // Reset triggers
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            
+            animateHeader();
+            animateSections();
+            animateSkills();
+            animateExperiences();
+            animateCertifications();
+            animateEducation();
+            animateLanguageSelector();
+        }
+    
+        // Language change function
+        function changeLang(newLang) {
+            if (newLang === currentLang || isAnimating) return;
+            
+            const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
+            const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
+            
+            if (!currentPage || !newPage) return;
+            
+            isAnimating = true;
+    
+            // Prepare new page
+            gsap.set(newPage, {
+                display: 'block',
+                rotateY: 90,
+                opacity: 0
+            });
+    
+            // Transition animation
+            gsap.timeline({
+                onComplete: () => {
+                    currentPage.style.display = 'none';
+                    isAnimating = false;
+                    currentLang = newLang;
+                    ScrollTrigger.refresh();
+                    initAnimations();
+                }
+            })
+            .to(currentPage, {
+                rotateY: -90,
+                opacity: 0,
+                duration: 0.6,
+                ease: "power2.inOut"
+            })
+            .to(newPage, {
+                rotateY: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: "power2.inOut"
+            }, "-=0.3");
+        }
+    
+        // Initialization
+        initAnimations();
+    
+        // Event listeners
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const newLang = btn.dataset.lang;
+                changeLang(newLang);
+            });
+        });
+    
+        // Refresh ScrollTrigger on resize
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
     });
-});
-
-// Refresh ScrollTrigger on resize
-window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
-});});
-</script>
-</body>
-</html>
+    </script>
+    </body>
+    </html>
