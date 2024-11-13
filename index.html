@@ -274,6 +274,79 @@
                 font-size: 14px;
             }
         }
+        /* Nouvelle classe pour cacher initialement les éléments */
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Classes d'animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: visible;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: visible;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: visible;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Progress bar animation */
+        .progress-fill {
+            width: 0;
+            transition: width 1.2s ease-out;
+        }
+
+        .progress-fill.animate {
+            width: var(--target-width);
+        }
+
+        /* Page flip animation */
+        .page {
+            backface-visibility: hidden;
+            transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+        }
+
+        .page-exit {
+            transform: rotateY(-90deg);
+            opacity: 0;
+        }
+
+        .page-enter {
+            transform: rotateY(90deg);
+            opacity: 0;
+        }
+
+        .page-enter-active {
+            transform: rotateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -735,252 +808,167 @@
             </div>
         </div>
     </div>
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Global variables
+            // Variables globales
             let currentLang = 'fr';
             let isAnimating = false;
-        
-            // Initialize GSAP
-            gsap.registerPlugin(ScrollTrigger);
-        
-            // Initial header animation
-            function animateHeader() {
-                const timeline = gsap.timeline();
-                timeline
-                    .to('.name', {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    })
-                    .to('.title', {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    }, '-=0.4')
-                    .to('.contact', {
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    }, '-=0.4');
-            }
-        
-            // Section animations
-            function animateSections() {
-                gsap.utils.toArray('.section').forEach((section, index) => {
-                    gsap.from(section, {
-                        scrollTrigger: {
-                            trigger: section,
-                            start: "top 80%",
-                            end: "top 20%",
-                            toggleActions: "play none none reverse"
-                        },
-                        opacity: 0,
-                        y: 50,
-                        duration: 1,
-                        ease: "power3.out",
-                        delay: index * 0.2
-                    });
-        
-                    gsap.from(section.querySelector('h2'), {
-                        scrollTrigger: {
-trigger: section,
-start: "top 80%",
-toggleActions: "play none none reverse"
-},
-opacity: 0,
-x: -20,
-duration: 0.8,
-ease: "power3.out",
-delay: index * 0.2 + 0.2
-});
-});
-}
-// Skills animations
-function animateSkills() {
-            gsap.utils.toArray('.skill-category').forEach((category, i) => {
-                gsap.from(category, {
-                    scrollTrigger: {
-                        trigger: category,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    x: -50,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: "power3.out"
-                });
-    
-                const progressBars = category.querySelectorAll('.progress-fill');
-                progressBars.forEach(bar => {
-                    const targetWidth = bar.style.width;
-                    gsap.fromTo(bar,
-                        { width: "0%" },
-                        {
-                            scrollTrigger: {
-                                trigger: bar,
-                                start: "top 90%"
-                            },
-                            width: targetWidth,
-                            duration: 1.2,
-                            ease: "power2.out",
-                            delay: i * 0.2 + 0.2
-                        }
-                    );
-                });
-            });
-        }
-    
-        // Experience animations
-        function animateExperiences() {
-            gsap.utils.toArray('.experience-item').forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    y: 30,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    delay: i * 0.2
-                });
-            });
-        }
-    
-        // Certifications animations
-        function animateCertifications() {
-            gsap.utils.toArray('.certification').forEach((cert, i) => {
-                gsap.from(cert, {
-                    scrollTrigger: {
-                        trigger: cert,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    y: 30,
-                    scale: 0.95,
-                    duration: 0.6,
-                    delay: i * 0.2,
-                    ease: "back.out(1.7)"
-                });
-            });
-        }
-    
-        // Education animations
-        function animateEducation() {
-            gsap.utils.toArray('.education-item').forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    y: 30,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    delay: i * 0.2
-                });
-            });
-        }
-    
-        // Language selector animation
-        function animateLanguageSelector() {
-            gsap.from('.language-selector', {
-                opacity: 0,
-                y: -20,
-                duration: 0.8,
-                delay: 1,
-                ease: "power3.out"
-            });
-    
-            gsap.from('.language-btn', {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                delay: 1.2,
-                stagger: 0.2,
-                ease: "power3.out"
-            });
-        }
-    
-        // Initialize animations
-        function initAnimations() {
-            // Reset triggers
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-            
-            animateHeader();
-            animateSections();
-            animateSkills();
-            animateExperiences();
-            animateCertifications();
-            animateEducation();
-            animateLanguageSelector();
-        }
-    
-        // Language change function
-        function changeLang(newLang) {
-            if (newLang === currentLang || isAnimating) return;
-            
-            const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
-            const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
-            
-            if (!currentPage || !newPage) return;
-            
-            isAnimating = true;
-    
-            // Prepare new page
-            gsap.set(newPage, {
-                display: 'block',
-                rotateY: 90,
-                opacity: 0
-            });
-    
-            // Transition animation
-            gsap.timeline({
-                onComplete: () => {
-                    currentPage.style.display = 'none';
-                    isAnimating = false;
-                    currentLang = newLang;
-                    ScrollTrigger.refresh();
-                    initAnimations();
+
+            // Fonction utilitaire pour vérifier si un élément existe
+            function safeAddClass(element, className) {
+                if (element && element.classList) {
+                    element.classList.add(className);
                 }
-            })
-            .to(currentPage, {
-                rotateY: -90,
-                opacity: 0,
-                duration: 0.6,
-                ease: "power2.inOut"
-            })
-            .to(newPage, {
-                rotateY: 0,
-                opacity: 1,
-                duration: 0.6,
-                ease: "power2.inOut"
-            }, "-=0.3");
-        }
-    
-        // Initialization
-        initAnimations();
-    
-        // Event listeners
-        document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const newLang = btn.dataset.lang;
-                changeLang(newLang);
+            }
+
+            // Fonction utilitaire pour observer en toute sécurité
+            function safeObserve(element, observer) {
+                if (element) {
+                    observer.observe(element);
+                }
+            }
+
+            // Configuration de l'Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animation spéciale pour les progress bars
+                        if (entry.target.classList.contains('progress-fill')) {
+                            const targetWidth = entry.target.getAttribute('data-width');
+                            if (targetWidth) {
+                                entry.target.style.setProperty('--target-width', targetWidth);
+                                entry.target.classList.add('animate');
+                            }
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Initialiser les animations avec vérification
+            function initAnimations() {
+                // Réinitialiser l'observer
+                observer.disconnect();
+
+                // Header animations avec vérification
+                const headerElements = {
+                    name: document.querySelector('.name'),
+                    title: document.querySelector('.title'),
+                    contact: document.querySelector('.contact')
+                };
+
+                Object.entries(headerElements).forEach(([key, element]) => {
+                    if (element) {
+                        element.classList.remove('hidden', 'visible', 'fade-in');
+                        setTimeout(() => {
+                            safeAddClass(element, 'fade-in');
+                            safeObserve(element, observer);
+                        }, 100);
+                    }
+                });
+
+                // Observer pour les sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('visible', 'fade-in');
+                    safeAddClass(section, 'fade-in');
+                    safeObserve(section, observer);
+                });
+
+                // Observer pour les skills
+                document.querySelectorAll('.skill-category').forEach(category => {
+                    category.classList.remove('visible', 'slide-in-left');
+                    safeAddClass(category, 'slide-in-left');
+                    safeObserve(category, observer);
+                });
+
+                // Progress bars
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    const width = bar.style.width;
+                    bar.setAttribute('data-width', width);
+                    bar.style.width = '0';
+                    safeObserve(bar, observer);
+                });
+
+                // Certifications
+                document.querySelectorAll('.certification').forEach(cert => {
+                    cert.classList.remove('visible', 'scale-in');
+                    safeAddClass(cert, 'scale-in');
+                    safeObserve(cert, observer);
+                });
+
+                // Experience items
+                document.querySelectorAll('.experience-item').forEach(item => {
+                    item.classList.remove('visible', 'fade-in');
+                    safeAddClass(item, 'fade-in');
+                    safeObserve(item, observer);
+                });
+
+                // Education items
+                document.querySelectorAll('.education-item').forEach(item => {
+                    item.classList.remove('visible', 'fade-in');
+                    safeAddClass(item, 'fade-in');
+                    safeObserve(item, observer);
+                });
+            }
+
+            // Fonction de changement de langue sécurisée
+            function changeLang(newLang) {
+                if (newLang === currentLang || isAnimating) return;
+                
+                const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
+                const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
+                
+                if (!currentPage || !newPage) return;
+                
+                isAnimating = true;
+
+                // Animation de sortie
+                safeAddClass(currentPage, 'page-exit');
+                
+                // Préparation de la nouvelle page
+                newPage.style.display = 'block';
+                safeAddClass(newPage, 'page-enter');
+                
+                // Timing de l'animation
+                setTimeout(() => {
+                    safeAddClass(newPage, 'page-enter-active');
+                    newPage.classList.remove('page-enter');
+                    
+                    if (currentPage) {
+                        currentPage.style.display = 'none';
+                        currentPage.classList.remove('page-exit');
+                    }
+                    
+                    currentLang = newLang;
+                    isAnimating = false;
+                    
+                    // Réinitialiser les animations
+                    setTimeout(initAnimations, 100);
+                }, 600);
+            }
+
+            // Event listeners pour les boutons de langue
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        const newLang = btn.dataset.lang;
+                        if (newLang) {
+                            changeLang(newLang);
+                        }
+                    });
+                }
             });
+
+            // Initialisation avec délai pour s'assurer que le DOM est prêt
+            setTimeout(initAnimations, 100);
         });
-    
-        // Refresh ScrollTrigger on resize
-        window.addEventListener('resize', () => {
-            ScrollTrigger.refresh();
-        });
-    });
     </script>
     </body>
     </html>
