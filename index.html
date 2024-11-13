@@ -32,129 +32,41 @@
         }
 
         .wrapper {
-            position: relative;
-            perspective: 2000px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 2rem;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
         .book-container {
-            width: 100%;
             max-width: 1200px;
-            min-height: 90vh;
-            position: relative;
-            margin: 20px;
-        }
-
-        .page {
-            position: absolute;
-            width: 100%;
-            height: auto;
-            min-height: 90vh;
-            transform-origin: left;
+            margin: 0 auto;
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.6s ease;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .page {
             display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
         .page.active {
             display: block;
+            opacity: 1;
         }
 
-        .page-content {
-            height: 100%;
-            overflow-y: auto;
-            padding: 40px;
-        }
-
-        /* Styles existants */
-        header {
-            background: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            border-radius: 8px 8px 0 0;
-            text-align: center;
-        }
-
-        .name {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        .title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .contact {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-            opacity: 0;
-        }
-
-        .section {
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            transform: translateX(-20px);
-            opacity: 0;
-        }
-
-        /* Améliorations des styles */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .skill-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Animation des progress bars */
+        /* Styles pour la barre de progression */
         .progress-bar {
             width: 100%;
             height: 8px;
             background: var(--progress-bg);
             border-radius: 4px;
             overflow: hidden;
-            position: relative;
+            margin-top: 5px;
         }
 
         .progress-fill {
@@ -166,54 +78,96 @@
             transition: width 1.2s ease-out;
         }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255,255,255,0.2),
-                transparent);
-            animation: shimmer 2s infinite;
+        .progress-fill.animate {
+            width: var(--target-width);
         }
 
-        /* Boutons de langue */
+        /* Style pour les sections */
+        .section {
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles pour les compétences */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Style pour le header */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .name, .title, .contact {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .name.visible, .title.visible, .contact.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style pour les boutons de langue */
         .language-selector {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
             display: flex;
-            gap: 15px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 15px;
+            padding: 10px;
+            border-radius: 8px;
             backdrop-filter: blur(10px);
-            opacity: 0;
-            transform: translateY(-20px);
         }
 
         .language-btn {
-            padding: 12px 24px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #2c5364;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 4px;
+            background: white;
+            color: var(--primary-color);
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(20px);
         }
 
         .language-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         /* Autres animations */
@@ -804,166 +758,79 @@
             </div>
         </div>
     </div>
-        <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Variables globales
             let currentLang = 'fr';
-            let isAnimating = false;
-
-            // Fonction utilitaire pour vérifier si un élément existe
-            function safeAddClass(element, className) {
-                if (element && element.classList) {
-                    element.classList.add(className);
-                }
-            }
-
-            // Fonction utilitaire pour observer en toute sécurité
-            function safeObserve(element, observer) {
-                if (element) {
-                    observer.observe(element);
-                }
-            }
 
             // Configuration de l'Intersection Observer
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Ajoute la classe visible pour l'animation
                         entry.target.classList.add('visible');
-                        
-                        // Animation spéciale pour les progress bars
+
+                        // Animation spéciale pour les barres de progression
                         if (entry.target.classList.contains('progress-fill')) {
-                            const targetWidth = entry.target.getAttribute('data-width');
-                            if (targetWidth) {
-                                entry.target.style.setProperty('--target-width', targetWidth);
-                                entry.target.classList.add('animate');
-                            }
+                            const width = entry.target.parentElement.parentElement.querySelector('.skill-percentage').textContent;
+                            entry.target.style.width = width;
                         }
                     }
                 });
-            }, observerOptions);
+            }, {
+                threshold: 0.1
+            });
 
-            // Initialiser les animations avec vérification
+            // Fonction pour initialiser les animations
             function initAnimations() {
-                // Réinitialiser l'observer
-                observer.disconnect();
-
-                // Header animations avec vérification
-                const headerElements = {
-                    name: document.querySelector('.name'),
-                    title: document.querySelector('.title'),
-                    contact: document.querySelector('.contact')
-                };
-
-                Object.entries(headerElements).forEach(([key, element]) => {
-                    if (element) {
-                        element.classList.remove('hidden', 'visible', 'fade-in');
-                        setTimeout(() => {
-                            safeAddClass(element, 'fade-in');
-                            safeObserve(element, observer);
-                        }, 100);
-                    }
+                // Animation du header
+                ['name', 'title', 'contact'].forEach(className => {
+                    const element = document.querySelector('.' + className);
+                    if (element) observer.observe(element);
                 });
 
-                // Observer pour les sections
+                // Animation des sections
                 document.querySelectorAll('.section').forEach(section => {
-                    section.classList.remove('visible', 'fade-in');
-                    safeAddClass(section, 'fade-in');
-                    safeObserve(section, observer);
+                    observer.observe(section);
                 });
 
-                // Observer pour les skills
+                // Animation des compétences
                 document.querySelectorAll('.skill-category').forEach(category => {
-                    category.classList.remove('visible', 'slide-in-left');
-                    safeAddClass(category, 'slide-in-left');
-                    safeObserve(category, observer);
+                    observer.observe(category);
                 });
 
-                // Progress bars
-                document.querySelectorAll('.progress-fill').forEach(bar => {
-                    const width = bar.style.width;
-                    bar.setAttribute('data-width', width);
-                    bar.style.width = '0';
-                    safeObserve(bar, observer);
-                });
-
-                // Certifications
-                document.querySelectorAll('.certification').forEach(cert => {
-                    cert.classList.remove('visible', 'scale-in');
-                    safeAddClass(cert, 'scale-in');
-                    safeObserve(cert, observer);
-                });
-
-                // Experience items
-                document.querySelectorAll('.experience-item').forEach(item => {
-                    item.classList.remove('visible', 'fade-in');
-                    safeAddClass(item, 'fade-in');
-                    safeObserve(item, observer);
-                });
-
-                // Education items
-                document.querySelectorAll('.education-item').forEach(item => {
-                    item.classList.remove('visible', 'fade-in');
-                    safeAddClass(item, 'fade-in');
-                    safeObserve(item, observer);
+                // Animation des barres de progression
+                document.querySelectorAll('.progress-fill').forEach(progressBar => {
+                    observer.observe(progressBar);
                 });
             }
 
-            // Fonction de changement de langue sécurisée
+            // Fonction de changement de langue
             function changeLang(newLang) {
-                if (newLang === currentLang || isAnimating) return;
-                
-                const currentPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
-                const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
-                
-                if (!currentPage || !newPage) return;
-                
-                isAnimating = true;
+                if (newLang === currentLang) return;
 
-                // Animation de sortie
-                safeAddClass(currentPage, 'page-exit');
-                
-                // Préparation de la nouvelle page
-                newPage.style.display = 'block';
-                safeAddClass(newPage, 'page-enter');
-                
-                // Timing de l'animation
-                setTimeout(() => {
-                    safeAddClass(newPage, 'page-enter-active');
-                    newPage.classList.remove('page-enter');
-                    
-                    if (currentPage) {
-                        currentPage.style.display = 'none';
-                        currentPage.classList.remove('page-exit');
-                    }
-                    
+                const oldPage = document.querySelector(`.page[data-lang="${currentLang}"]`);
+                const newPage = document.querySelector(`.page[data-lang="${newLang}"]`);
+
+                if (oldPage && newPage) {
+                    oldPage.classList.remove('active');
+                    newPage.classList.add('active');
                     currentLang = newLang;
-                    isAnimating = false;
                     
                     // Réinitialiser les animations
                     setTimeout(initAnimations, 100);
-                }, 600);
+                }
             }
 
             // Event listeners pour les boutons de langue
             document.querySelectorAll('.language-btn').forEach(btn => {
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        const newLang = btn.dataset.lang;
-                        if (newLang) {
-                            changeLang(newLang);
-                        }
-                    });
-                }
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    if (lang) changeLang(lang);
+                });
             });
 
-            // Initialisation avec délai pour s'assurer que le DOM est prêt
-            setTimeout(initAnimations, 100);
+            // Initialisation
+            initAnimations();
         });
     </script>
     </body>
