@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Malek Berrezouga</title>
 <style>
-        /* Styles de base améliorés */
+        /* Variables et reset */
         :root {
             --primary-color: #2563eb;
             --secondary-color: #1e40af;
@@ -24,50 +24,136 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
+        /* Animation du background améliorée */
         body {
             min-height: 100vh;
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(-45deg, 
+                #0f2027,
+                #203a43,
+                #2c5364,
+                #3a6073,
+                #16222a
+            );
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientAnimation 15s ease infinite;
             overflow-x: hidden;
             color: var(--text-color);
             line-height: 1.6;
+            position: relative;
         }
 
-        /* Animation du background */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* Conteneur principal */
         .wrapper {
             min-height: 100vh;
             padding: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Animation du background */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Effet d'étoiles */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            animation: starAnimation 3s linear infinite;
+        }
+
+        @keyframes starAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+
+        /* Boutons de langue améliorés */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .language-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Conteneur principal du CV */
         .book-container {
             max-width: 1200px;
             width: 100%;
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 4px 60px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
             margin: 2rem auto;
+            position: relative;
+            z-index: 2;
         }
 
         .book-container:hover {
             transform: translateY(-5px);
         }
 
+        /* Gestion des pages */
         .page {
             display: none;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: all 0.6s ease;
             padding: 2rem;
         }
 
@@ -77,12 +163,7 @@
             animation: fadeIn 0.6s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Header amélioré */
+        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -135,7 +216,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Section styles améliorés */
+        /* Sections */
         .section {
             margin: 3rem 0;
             opacity: 0;
@@ -176,7 +257,7 @@
             width: 100px;
         }
 
-        /* Skills grid amélioré */
+        /* Grid des compétences */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -218,29 +299,7 @@
             transform: scaleX(1);
         }
 
-        .skill-category h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .skill-category h3::before {
-            content: '⚡';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .skill-category.visible h3::before {
-            opacity: 1;
-        }
-
+        /* Items de compétence */
         .skill-item {
             margin-bottom: 2rem;
             transform: translateX(-20px);
@@ -277,7 +336,7 @@
             transform: scale(1);
         }
 
-        /* Progress bar améliorée */
+        /* Barre de progression */
         .progress-bar {
             height: 10px;
             background: #edf2f7;
@@ -316,56 +375,94 @@
             animation: shimmer 2s infinite;
         }
 
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         @keyframes shimmer {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
 
-        /* Animation séquentielle pour les items */
-        .skill-category.visible .skill-item:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-        .skill-category.visible .skill-item:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-        .skill-category.visible .skill-item:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        /* Hover effects */
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .skill-item:hover .skill-percentage {
-            transform: scale(1.1);
-            background: var(--hover-color);
-        }
-
-        .skill-item:hover .progress-fill {
-            filter: brightness(1.1);
-        }
-
-        /* Animation pour les icônes des catégories */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .skill-category h3::before {
-            animation: bounce 2s infinite;
-        }
-
-        /* Styles responsifs améliorés */
+        /* Media Queries */
         @media (max-width: 768px) {
-            .wrapper { padding: 1rem; }
-            .book-container { margin: 1rem; }
-            .contact { gap: 1rem; }
-            .contact span { font-size: 0.9rem; }
-            .name { font-size: 2.5rem; }
-            .section { padding: 1.5rem; }
-            .skills-grid { grid-template-columns: 1fr; }
+            .wrapper {
+                padding: 1rem;
+            }
+
+            .book-container {
+                margin: 1rem;
+            }
+
+            .contact {
+                gap: 1rem;
+            }
+
+            .contact span {
+                font-size: 0.9rem;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 8px;
+            }
+
+            .language-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Autres styles spécifiques */
+        .certification,
+        .experience-item,
+        .education-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .certification.visible,
+        .experience-item.visible,
+        .education-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -829,6 +926,19 @@
         </div>
     </div>
     <script>
+        function createStarryBackground() {
+    const background = document.createElement('div');
+    background.className = 'background-animation';
+    document.body.appendChild(background);
+
+    for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        background.appendChild(star);
+    }
+}
        document.addEventListener('DOMContentLoaded', function() {
     let currentLang = 'fr';
     let isAnimating = false;
