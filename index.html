@@ -792,11 +792,17 @@ header::before {
 </style>
 </head>
 <body>
+     <!-- Ajout d'un container pour les particules -->
+    <div id="particles" class="particles" aria-hidden="true"></div>
+    <div class="background-overlay" aria-hidden="true"></div>
+    <div class="glow" aria-hidden="true"></div>
+
     <div class="wrapper">
-    <div class="language-selector">
-        <button class="language-btn" data-lang="fr">FR</button>
-        <button class="language-btn" data-lang="en">EN</button>
-    </div>
+        <!-- Améliorations des contrôles de langue -->
+        <nav class="language-selector" role="navigation" aria-label="Sélection de la langue">
+            <button class="language-btn" data-lang="fr" aria-pressed="true">FR</button>
+            <button class="language-btn" data-lang="en" aria-pressed="false">EN</button>
+        </nav>
 
     <div class="book-container">
         <!-- Page Française -->
